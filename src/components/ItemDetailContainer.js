@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react';
-import Item from './Item';
+import React from 'react';
+import ItemDetail from './ItemDetail';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const MANGA = [
     {
@@ -168,31 +169,34 @@ const MANGA = [
 
 
 
-const ItemList = () => {
 
-const [products, setProducts] = useState([])
 
-useEffect(()=>{
-    getProducts().then(response =>{
-        setProducts(response)
+
+
+
+const ItemDetailContainer = () => {
+    const {id} = useParams();
+    console.log(id);
+    const [item, setItem] = useState([])
+
+    
+    const getProducts = ()=> new Promise((resolve, reject)=>{
+        setTimeout(()=>resolve(MANGA.find(p => p.id == id)),2000)
     })
-},[])
-
-
-const getProducts = ()=>{
-    return new Promise((resolve, reject)=>{
-        setTimeout(()=>{
-            resolve(MANGA)
-        },2000)
-    })
+    
+    useEffect(()=>{
+        getProducts().then(response =>{
+            setItem(response)
+        })
+    },[])
+    
+    
+    
+      return (
+        <div>
+            <ItemDetail saga={item.saga} tomo={item.tomo} precio={item.precio} imagen={item.imagen} stock={item.stock}/>
+        </div>
+      )
 }
 
-
-  return (
-    <div>
-        {products.map(p => <Item key={p.id} {...p}/>)}
-    </div>
-  )
-}
-
-export default ItemList
+export default ItemDetailContainer

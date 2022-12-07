@@ -2,7 +2,9 @@ import React from 'react'
 import ItemCount from './ItemCount'
 import { Link } from 'react-router-dom'
 
-const Item = ({ saga, tomo, precio, imagen, id, stock }) => {
+
+const ItemDetail = ({ saga, tomo, precio, imagen, id, stock }) => {
+
     const onAdd = (cantidad) => {
         console.log(`se ha agregado ${cantidad} `)
     }
@@ -26,4 +28,4 @@ const Item = ({ saga, tomo, precio, imagen, id, stock }) => {
     )
 }
 
-export default Item
+export default ItemDetail
