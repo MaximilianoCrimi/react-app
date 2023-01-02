@@ -1,20 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const ItemCount = ({stock, initial, onAdd}) => {
     const [count, setCount] = useState(initial)
 
 
+
     const plus = ()=>{
-        stock > count ? setCount(count + 1) : setCount(count)
+        stock > count && setCount(count + 1) 
+        console.log(count);
     }
 
     const less = ()=>{
-        count > 1 ? setCount(count - 1) : setCount(count)
+        count > 1 && setCount(count - 1) 
+        console.log(count);
     }
 
     const add = ()=>{
         onAdd(count)
     }
+    
+
 
   return (
     <div className='m-5 p-24'>
@@ -23,7 +28,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
         <p>{count}</p>
         <button className="btn btn-outline btn-info" onClick={plus}>+</button>
         </div>
-        <button className="btn btn-primary"  onClick={add}>Agregar al carrito</button>
+        
     </div>
   )
 }

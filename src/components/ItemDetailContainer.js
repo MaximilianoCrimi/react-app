@@ -173,7 +173,7 @@ const MANGA = [
 
 const ItemDetailContainer = () => {
     const {id} = useParams();
-    console.log(id);
+    //console.log(id);
     const [item, setItem] = useState([])
 
     
@@ -187,11 +187,11 @@ const ItemDetailContainer = () => {
         })
     },[])
     
-    const{saga, tomo, precio, imagen, stock}= item;
+   // const{saga, tomo, precio, imagen, stock}= item;
 
       return (
         <div>
-            <ItemDetail saga={saga} tomo={tomo} precio={precio} imagen={imagen} stock={stock}/>
+            <ItemDetail item = {item}/>
         </div>
       )
 }

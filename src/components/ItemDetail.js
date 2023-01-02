@@ -1,25 +1,49 @@
-import React from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import ItemCount from './ItemCount'
 import { Link } from 'react-router-dom'
+import Return from './Return'
+import { CartContext } from '../context/cartContext'
 
 
-const ItemDetail = ({ saga, tomo, precio, imagen, id, stock }) => {
+const ItemDetail = ({item }) => {
 
-    const onAdd = (cantidad) => {
-        console.log(`se ha agregado ${cantidad} `)
+    const [cant, setCant] = useState(1);
+
+    useEffect(() => {
+    
+      return () => {
+        onAdd()
+        console.log(cant);
+      }
+    }, [cant])
+    
+
+    const onAdd = (count) => {
+        setCant(count)
     }
+
+    const {addToCart, cart} = useContext(CartContext);
+    const handlerAddToCart = () => { 
+        addToCart(item, cant);
+     }
+
+     console.log(cart);
+
+
     return (
         <div>
             <div className='flex flex-row '>
                 <div className="card w-96 bg-base-100 shadow-xl m-3 ">
-                    <figure className='w-80 mt-10 ml-5'><img src={imagen} alt={saga} /></figure>
+                    <figure className='w-80 mt-10 ml-5'><img src={item.imagen} alt={item.saga} /></figure>
                     <div className="card-body">
-                        <h2 className="card-title">{`Saga: ${saga}`}</h2>
-                        <p>{`Tomo: ${tomo}`}</p>
-                        <p>{`Precio: $${precio}`}</p>
+                        <h2 className="card-title">{`Saga: ${item.saga}`}</h2>
+                        <p>{`Tomo: ${item.tomo}`}</p>
+                        <p>{`Precio: $${item.precio}`}</p>
                         <div className="card-actions justify-end">
-                            <ItemCount stock={stock} initial={1} onAdd={onAdd} />
-                            <Link to={`/item/${id}`}><button className='btn btn-primary'>ver detalle</button></Link>
+                            <ItemCount stock={item.stock} initial={1} onAdd={onAdd} />
+                            <button className="btn btn-primary"  onClick={handlerAddToCart}>Agregar al carrito</button>
+                            <Return/>
+                            <Link to={'/cart'}><button className='btn btn-primary'>Finalizar compra</button></Link>
                         </div>
                     </div>
                 </div>

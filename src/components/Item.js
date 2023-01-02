@@ -16,7 +16,6 @@ const Item = ({ saga, tomo, precio, imagen, id, stock }) => {
                         <p>{`Tomo: ${tomo}`}</p>
                         <p>{`Precio: $${precio}`}</p>
                         <div className="card-actions justify-end">
-                            <ItemCount stock={stock} initial={1} onAdd={onAdd} />
                             <Link to={`/item/${id}`}><button className='btn btn-primary'>ver detalle</button></Link>
                         </div>
                     </div>
