@@ -5,7 +5,6 @@ import CartWidget from './CartWidget'
 
 const NavBar = () => {
 
-    const {totalProductsCart} = useContext(CartContext)
 
     return (
 

@@ -8,7 +8,7 @@ import { CartContext } from '../context/cartContext'
 const ItemDetail = ({item }) => {
 
     const [cant, setCant] = useState(1);
-
+    const [purchase, setPurchase] = useState(false)
     useEffect(() => {
     
       return () => {
@@ -25,6 +25,7 @@ const ItemDetail = ({item }) => {
     const {addToCart, cart} = useContext(CartContext);
     const handlerAddToCart = () => { 
         addToCart(item, cant);
+        setPurchase(!purchase)
      }
 
      console.log(cart);
@@ -41,9 +42,13 @@ const ItemDetail = ({item }) => {
                         <p>{`Precio: $${item.precio}`}</p>
                         <div className="card-actions justify-end">
                             <ItemCount stock={item.stock} initial={1} onAdd={onAdd} />
-                            <button className="btn btn-primary"  onClick={handlerAddToCart}>Agregar al carrito</button>
+                            {
+                                !purchase?
+                                <button className="btn btn-primary"  onClick={handlerAddToCart}>Agregar al carrito</button>
+                                :
+                                <Link to={'/cart'}><button className='btn btn-primary'>Finalizar compra</button></Link>
+                            }
                             <Return/>
-                            <Link to={'/cart'}><button className='btn btn-primary'>Finalizar compra</button></Link>
                         </div>
                     </div>
                 </div>
