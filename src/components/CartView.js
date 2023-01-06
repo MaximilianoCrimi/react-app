@@ -22,6 +22,7 @@ const CartView = () => {
                             <div className="card-body w-80 ">
                                 <h2 className="card-title text-6xl">Saga {item.saga}</h2>
                                 <p className='text-4xl'>Tomo: {item.tomo}</p>
+                                <p className='text-4xl'>$ {item.precio}</p>
                                 <div className="card-actions justify-end">
                                     <button className="btn btn-primary" onClick={()=>handlerDeleteProduct(item.id)}>Borrar</button>
                                 </div>
