@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { CartContextProvider } from "./context/cartContext";
 import CartView from "./components/CartView";
 import './firebase/config'
+import CheckOut from "./components/CheckOut";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
               <Route path="/item/:id" element={<ItemDetailContainer />} />
               <Route path="/category/:idCategory" element={<ItemListContainer />} />
               <Route path="/cart" element={<CartView/>}/>
+              <Route path="/CheckOut" element={<CheckOut/>}/>
             </Routes>
           </BrowserRouter>
         </header>

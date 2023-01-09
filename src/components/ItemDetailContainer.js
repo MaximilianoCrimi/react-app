@@ -6,14 +6,8 @@ import {getFirestore, doc, getDoc} from 'firebase/firestore'
 
 const ItemDetailContainer = () => {
     const {id} = useParams();
-    //console.log(id);
-    const [item, setItem] = useState([])
 
-    
-    // const getProducts = ()=> new Promise((resolve, reject)=>{
-    //     setTimeout(()=>
-    //     resolve(MANGA.find(p => p.id == id)),2000)
-    // })
+    const [item, setItem] = useState([])
     
     useEffect(()=>{
         const querydb = getFirestore();
@@ -22,8 +16,6 @@ const ItemDetailContainer = () => {
 
     },[])
     
-   // const{saga, tomo, precio, imagen, stock}= item;
-
       return (
         <div>
             <ItemDetail item = {item}/>

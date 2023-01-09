@@ -1,5 +1,6 @@
 import React from 'react'
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { CartContext } from '../context/cartContext'
 const CartView = () => {
 
@@ -41,7 +42,10 @@ const CartView = () => {
                 ?
                 <div>
                 <h3 className='text-6xl mt-80 text-center '>Total:$ {totalPriceCart()}</h3>
-                <button onClick={()=>emptyCart()} className="btn btn-wide btn-primary mt-20 text-xl text-center flex items-center justify-center">Vaciar carrito</button>
+                <div className='flex flex-row space-x-[40%]'>
+                <button onClick={()=>emptyCart()} className="btn btn-wide btn-primary ml-20 mt-20 text-xl text-center flex items-center justify-center">Vaciar carrito</button>
+                <Link to={'/CheckOut'} ><button className="btn btn-wide btn-primary mt-20 text-xl text-center flex items-center justify-center">Emitir compra</button></Link>
+                </div>
                 </div>
                 :
                 <h2 className='text-7xl'></h2>
