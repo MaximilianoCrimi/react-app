@@ -7,8 +7,11 @@ const Item = ({ saga, tomo, precio, imagen, id, stock }) => {
         console.log(`se ha agregado ${cantidad} `)
     }
     return (
-        <div>
-            <div className='flex flex-row '>
+        <>
+        <div >
+            <div className='flex  justify-center items-center min-h-screen container mx-auto'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+
                 <div className="card w-96 bg-base-100 shadow-xl m-3 ">
                     <figure className='w-80 mt-10 ml-5'><img src={imagen} alt={saga} /></figure>
                     <div className="card-body">
@@ -20,8 +23,10 @@ const Item = ({ saga, tomo, precio, imagen, id, stock }) => {
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
+        </>
     )
 }
 
