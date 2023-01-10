@@ -4,6 +4,7 @@ import { useState, useContext, useEffect } from 'react';
 import { CartContext } from '../context/cartContext'
 import Swal from 'sweetalert2'
 import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { Link } from 'react-router-dom';
 
 const Formulario = () => {
   const { totalProductsCart, totalPriceCart, cart } = useContext(CartContext)
@@ -11,21 +12,15 @@ const Formulario = () => {
   const [alert, setAlert] = useState(false)
   const [id, setId] = useState()
 
-  
+
   const onSubmit = (data) => {
     setAlert(true)
     const db = getFirestore();
     const ordersCollection = collection(db, 'orders');
-    addDoc(ordersCollection, ({data, ...cart}))
-    .then(({id} )=> setId(id))
+    addDoc(ordersCollection, ({ ...data, ...cart, }))
+      .then(({ id }) => setId(id))
   }
 
-  useEffect(() => {
-    
-
-
-  }, [])
-  
 
 
   return (
@@ -112,18 +107,20 @@ const Formulario = () => {
         </div>
       </div>
       :
+
       <div>
-        {Swal.fire({
-          title: `Gracias por su compra`,
-          text: `Su orden de compra es: ${id}`,
-          showClass: {
-            popup: 'animate__animated animate__fadeInDown'
-          },
-          hideClass: {
-            popup: 'animate__animated animate__fadeOutUp'
-          }
-        })
-        }
+        <div className="alert shadow-lg mt-96">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <div>
+              <h3 className="font-bold">Gracias por su compra</h3>
+              <div className="text-xs">Su orden de compra es: {id}</div>
+            </div>
+          </div>
+          <div className="flex-none">
+            <Link to={'/'}><button className="btn btn-sm">Volver al Home</button></Link>
+          </div>
+        </div>
       </div>
     }
     </>
