@@ -25,6 +25,7 @@ const CheckOut = () => {
 
     </div>
 
+    <p className='text-6xl mt-60 text-center'>Total: {totalPriceCart()}</p>
 
     <Formulario/>
 

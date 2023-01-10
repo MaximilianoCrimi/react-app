@@ -7,7 +7,7 @@ import { addDoc, collection, getFirestore } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 
 const Formulario = () => {
-  const { totalProductsCart, totalPriceCart, cart } = useContext(CartContext)
+  const { totalProductsCart, emptyCart, totalPriceCart, cart } = useContext(CartContext)
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [alert, setAlert] = useState(false)
   const [id, setId] = useState()
@@ -118,7 +118,7 @@ const Formulario = () => {
             </div>
           </div>
           <div className="flex-none">
-            <Link to={'/'}><button className="btn btn-sm">Volver al Home</button></Link>
+            <Link to={'/'}><button onClick={emptyCart} className="btn btn-sm">Volver al Home</button></Link>
           </div>
         </div>
       </div>
